@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class EmployeCommission extends Employes{
+public class EmployeeCommission extends Employee{
 	
 	private double Salaire, Commission;
 	private int Ventes;
@@ -28,14 +28,14 @@ public class EmployeCommission extends Employes{
 	}
 	
 	
-	public EmployeCommission() {}
-	public EmployeCommission(double salaire, double commission, int ventes) {
+	public EmployeeCommission() {}
+	public EmployeeCommission(double salaire, double commission, int ventes) {
 		Salaire = salaire;
 		Commission = commission;
 		Ventes = ventes;
 	}
-	public EmployeCommission(String Noms, String Prenom, LocalDate Date_de_naissance , double salaire, double commission, int ventes) {
-		super(Noms, Prenom, Date_de_naissance);
+	public EmployeeCommission(String nom, String prenom, LocalDate date_de_naissance , double salaire, double commission, int ventes) {
+		super(nom, prenom, date_de_naissance, commission);
 		Salaire = salaire;
 		Commission = commission;
 		Ventes = ventes;

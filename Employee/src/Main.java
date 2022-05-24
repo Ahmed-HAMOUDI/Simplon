@@ -1,26 +1,26 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Salaire_employes {
+public class Main {
 	
 	public static Scanner scan = new Scanner(System.in);
-	public static String Prenom, Nom;
-	public static LocalDate Da_Nai;
-	public static char type_employ√©s, Mode_payement;
-	public static Double Salaire, Commission, taux_horaire, heures_prest√©es;
+	public static String prenom, nom;
+	public static LocalDate date_de_naissance;
+	public static char type_employee, Mode_payement;
+	public static Double Salaire, Commission, taux_horaire, heures_prestÈes;
 	public static int Ventes;
 	
 	
-	public static void employesFixe() {
+	public static void EmployesFixe() {
 		
 		System.out.println("-------------------------------------------Fixe---------------------------------------------");
 		
 		//----------------------------------------_Salaire-------------------------------------------
-		System.out.println("\tS'il vous plais saisi votre Salaire :");
+		System.out.println("\saisir votre Salaire :");
 		Salaire = scan.nextDouble();
 		
 		//----------------------------------------Declaration_de_Class-------------------------------
-		EmployeFixe EmFi = new EmployeFixe(Salaire, Prenom, Nom, Da_Nai);
+		EmployeeFixe EmFi = new EmployeeFixe(Salaire, prenom, nom, date_de_naissance);
 		
 		//----------------------------------------Afficher_Class-------------------------------------
 		System.out.println(EmFi.toString());
@@ -28,22 +28,22 @@ public class Salaire_employes {
 		System.out.println("---------------------------------------M E R C I---------------------------------------------");
 	}
 	
-	public static void employesCommission() {
+	public static void EmployesCommission() {
 		
 		System.out.println("--------------------------------------------Commission--------------------------------------------");
 		
 		//----------------------------------------_Salaire-------------------------------------------
-		System.out.println("\tS'il vous plais saisi votre Salaire :");
+		System.out.println("\saisir votre Salaire :");
 		Salaire = scan.nextDouble();
 		//----------------------------------------_ventes-------------------------------------------
-		System.out.println("\tS'il vous plais saisi combient de ventes avez vous fait :");
+		System.out.println("\saisir combient de ventes avez vous fait :");
 		Ventes = scan.nextInt();
 		//----------------------------------------Commission-------------------------------------------
-		System.out.println("\tS'il vous plais saisi commission il est la commission :");
+		System.out.println("\saisir commission il est la commission :");
 		Commission = scan.nextDouble();
 		
 		//----------------------------------------Declaration_de_Class-------------------------------
-		EmployeCommission EmCo = new EmployeCommission(Prenom, Nom, Da_Nai, Salaire, Commission, Ventes);
+		EmployeeCommission EmCo = new EmployeeCommission(prenom, nom, date_de_naissance, Salaire, Commission, Ventes);
 		
 		//----------------------------------------Afficher_Class-------------------------------------
 		System.out.println(EmCo.toString());
@@ -51,27 +51,34 @@ public class Salaire_employes {
 		System.out.println("---------------------------------------M E R C I---------------------------------------------");
 	}
 	
-	public static void employesHoraire() {
+	public static void EmployeeHoraire() {
 		
 		System.out.println("---------------------------------------------Horaire-------------------------------------------");
 		
 		//----------------------------------------Mode_de_payement---------------------------------------
-		System.out.println("\tVous pouver saisir votre mode de payement");
+		System.out.println("\saisir votre mode de payement");
 		System.out.println("\tmensuel taper M \thebdomadaire taper H");
 		do {
 			Mode_payement = Character.toUpperCase(scan.next().charAt(0)); 
-		}while(Mode_payement != 'M' && Mode_payement != 'H');
+		}while(Mode_payement == 'M' && Mode_payement == 'H');
 		
 		
 		//----------------------------------------taux_horaire-------------------------------------------
-		System.out.println("\tS'il vous plais saisi votre taux horaire :");
+		System.out.println("\tsaisir votre taux horaire :");
 		taux_horaire = scan.nextDouble();
-		//----------------------------------------heures_prest√©es----------------------------------------
-		System.out.println("\tS'il vous plais saisi votre heures prest√©es :");
-		heures_prest√©es = scan.nextDouble();
-		
+		//----------------------------------------heures_prestÈes----------------------------------------
+		System.out.println("\tsaisir votre heures prestÈes :");
+		heures_prestÈes = scan.nextDouble();
+		 if ( Mode_payement == 'M' && heures_prestÈes > 200) {
+				System.out.println(" Max est 200h ");
+				System.exit(0);
+				 }
+		 if (heures_prestÈes > 50 && Mode_payement == 'H' ) {
+				System.out.println(" Max est 50 h ");
+				System.exit(0);
+				 }
 		//----------------------------------------Declaration_de_Class-------------------------------
-		EmployeHoraire EmHo = new EmployeHoraire(Prenom, Nom, Da_Nai, taux_horaire, heures_prest√©es);
+		EmployeeHoraire EmHo = new EmployeeHoraire(prenom, nom,date_de_naissance, taux_horaire, heures_prestÈes);
 		
 		//----------------------------------------Afficher_Class-------------------------------------
 		System.out.println(EmHo.toString());
@@ -80,43 +87,45 @@ public class Salaire_employes {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		System.out.println("---------------------------------------HELLO BOSS---------------------------------------");
+
+		System.out.println("---------------------------------------HELLO ---------------------------------------");
 		
 		
 		//----------------------------------------_Prenom-------------------------------------
-		System.out.println("\tS'il vous plais saisi votre Prenom :");
-		Prenom = scan.nextLine();
+		System.out.println("\tsaisir votre Prenom :");
+		prenom = scan.nextLine();
 		
 		//----------------------------------------_nom----------------------------------------
-		System.out.println("\tS'il vous plais saisi votre Nom :");
-		Nom = scan.nextLine();
+		System.out.println("\tsaisir votre Nom :");
+		nom = scan.nextLine();
 		
 		//----------------------------------------Date_de_naissance---------------------------
-		System.out.println("\tS'il vous plais saisi votre Date de naissance :");
-		Da_Nai = LocalDate.of(scan.nextInt() , scan.nextInt() , scan.nextInt());
+		System.out.println("\tsaisir votre Date de naissance :");
+		date_de_naissance = LocalDate.of(scan.nextInt() , scan.nextInt() , scan.nextInt());
 		
 		
 		System.out.println("----------------------------------------------------------------------------------------");
 		
-		//----------------------------------------type_de_employ√©s---------------------------
-		System.out.println("\tQelle type de employ√©s eter vous");
+		//----------------------------------------type_de_employÈs---------------------------
+		System.out.println("\tQelle type de employÈs eter vous");
 		System.out.println("\tFixe tapper F\tCommission tapper C\tHoraire tapper H");
 		do {
-			type_employ√©s = Character.toUpperCase(scan.next().charAt(0));
-		}while(type_employ√©s != 'F' && type_employ√©s != 'C' && type_employ√©s != 'H');
+			type_employee = Character.toUpperCase(scan.next().charAt(0));
+		}while(type_employee != 'F' && type_employee != 'C' && type_employee != 'H');
 		
 		//----------------------------------------Switch_les_type---------------------------
-		switch (type_employ√©s) {
+		switch (type_employee) {
 		case 'F' : 
-			employesFixe();
+			EmployesFixe();
 			break;
 		case 'C' : 
-			employesCommission();
+			EmployesCommission();
 			break;
 		case 'H' : 
-			employesHoraire();
+			EmployeeHoraire();
+			
+			
 			break;
 	}
 		
